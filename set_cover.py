@@ -1,17 +1,7 @@
-X = set([1,2,3,4,5,6])
-F = [set([1,2]),set([4]),set([2,3,5]),set([1,3]),set([1,6])]
-
-n = len(F)
-x = [False for i in range(n)]
-
-res = list()
-min_num = 2^n
-opt_x = []
 def conflict(k, sum):
     if sum | F[k] > X:
         return True
     return False
-
 
 def get_index(x, target):
     '''
@@ -24,7 +14,6 @@ def index_to_element(indices, l):
     索引转元素
     '''
     return [l[index] for index in indices]
-
 
 def Backtrack(sum , k):
     global n, x, min_num, opt_x
@@ -50,14 +39,12 @@ def Backtrack(sum , k):
                     Backtrack(sum, k + 1)
 
 
-
-
-
-
-
-
-
-
-
-
+#测试阶段
+X = set([1,2,3,4,5,6])
+F = [set([1,2]),set([4]),set([2,3,5]),set([1,3]),set([1,6])]
+n = len(F)
+x = [False for i in range(n)]
+res = list()
+min_num = 2^n
+opt_x = []
 Backtrack(set(),0)

@@ -1,4 +1,4 @@
-# 递归法求解凸包
+# 求解凸包
 import random
 import matplotlib.pyplot as plt
 
@@ -106,17 +106,7 @@ def divideUp(seq, dot1, dot2, dot3, dot4, dotSet=None):
     # 划分上包左边的点集
     leftSet, maxDot = maxSize(seq, dot1, dot2, dotSet)
 
-    # 绘图检测---------------------------------------------------------------
-    plt.title('up_left')
-    # plt.axis([-20,20,-20,20])
-    plt.axis([-1100, 1100, -1100, 1100])
-    # plt.scatter([d[0] for d in seq0],[d[1] for d in seq0],color='black')
-    plt.scatter([d[0] for d in seq], [d[1] for d in seq], color='blue')
-    plt.scatter([dot1[0], dot2[0]], [dot1[1], dot2[1]], color='orange')
-    if maxDot:
-        plt.scatter(maxDot[0], maxDot[1], color='red')
-    plt.show()
-    # ----------------------------------------------------------------------
+
 
     # 对上包左包的点集进一步划分
     if leftSet:
@@ -125,17 +115,6 @@ def divideUp(seq, dot1, dot2, dot3, dot4, dotSet=None):
     # 划分上包右边的点集
     rightSet, maxDot = maxSize(seq, dot3, dot4, dotSet)
 
-    # 绘图检测---------------------------------------------------------------
-    plt.title('up_right')
-    # plt.axis([-20,20,-20,20])
-    plt.axis([-1100, 1100, -1100, 1100])
-    # plt.scatter([d[0] for d in seq0],[d[1] for d in seq0],color='black')
-    plt.scatter([d[0] for d in seq], [d[1] for d in seq], color='blue')
-    plt.scatter([dot3[0], dot4[0]], [dot3[1], dot4[1]], color='orange')
-    if maxDot:
-        plt.scatter(maxDot[0], maxDot[1], color='red')
-    plt.show()
-    # ----------------------------------------------------------------------
 
     # 对上包右包的点集进一步划分
     if rightSet:
@@ -158,17 +137,6 @@ def divideDown(seq, dot1, dot2, dot3, dot4, dotSet=None):
     # 划分下包左边的点集
     leftSet, minDot = minSize(seq, dot1, dot2, dotSet)
 
-    # 绘图检测---------------------------------------------------------------
-    plt.title('down_left')
-    # plt.axis([-20,20,-20,20])
-    plt.axis([-1100, 1100, -1100, 1100])
-    # plt.scatter([d[0] for d in seq0],[d[1] for d in seq0],color='black')
-    plt.scatter([d[0] for d in seq], [d[1] for d in seq], color='blue')
-    plt.scatter([dot1[0], dot2[0]], [dot1[1], dot2[1]], color='orange')
-    if minDot:
-        plt.scatter(minDot[0], minDot[1], color='red')
-    plt.show()
-    # ----------------------------------------------------------------------
 
     # 对下包的左包进行进一步划分
     if leftSet:
@@ -177,17 +145,6 @@ def divideDown(seq, dot1, dot2, dot3, dot4, dotSet=None):
     # 划分下包右包的点集
     rightSet, minDot = minSize(seq, dot3, dot4, dotSet)
 
-    # 绘图检测---------------------------------------------------------------
-    plt.title('down_right')
-    # plt.axis([-20,20,-20,20])
-    plt.axis([-1100, 1100, -1100, 1100])
-    # plt.scatter([d[0] for d in seq0],[d[1] for d in seq0],color='black')
-    plt.scatter([d[0] for d in seq], [d[1] for d in seq], color='blue')
-    plt.scatter([dot3[0], dot4[0]], [dot3[1], dot4[1]], color='orange')
-    if minDot:
-        plt.scatter(minDot[0], minDot[1], color='red')
-    plt.show()
-    # ----------------------------------------------------------------------
 
     # 对下包的右包进一步划分
     if rightSet:
@@ -244,8 +201,9 @@ def mainDivide(seq):
         res.append(u)
     return res
 
-
-seq0 = [(random.randint(-1000, 1000), random.randint(-1000, 1000)) for x in range(20)]
+import random
+random.seed(1996)
+seq0 = [(random.randint(-1000, 1000), random.randint(-1000, 1000)) for x in range(200000)]
 seq0 = list(set(seq0))
 res = mainDivide(seq0)
 print('res', sorted(res))
